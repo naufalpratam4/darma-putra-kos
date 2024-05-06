@@ -13,8 +13,8 @@
             <div class="flex gap-4 flex-wrap  mt-4  ">
                 <div class="">
                     <button
-                        class="md:px-4 md:py-2 px-4 py-2 border-2 border-blue-500 text-white  bg-blue-500 rounded-lg hover:bg-blue-700 hover:text-white duration-100 font-semibold">Kontak
-                        Kami</button>
+                        class="md:px-4 md:py-2 px-4 py-2 border-2 border-blue-500 text-white  bg-blue-500 rounded-lg hover:bg-blue-700 hover:text-white duration-100 font-semibold">Get
+                        Started</button>
                 </div>
                 <div>
                     <button
@@ -24,4 +24,6 @@
         </div>
     </div>
     @include('user.jumboTron')
+    @include('user.contAct')
+    @include('user.fooTer')
 @endsection
