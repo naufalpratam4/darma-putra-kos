@@ -88,9 +88,9 @@
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kamar</label>
-                                <select id="kamar" name="kamar"
+                                <select id="kamar" name="kamar_id"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected>Pilih Kamar</option>
+                                    <option selected value="">Pilih Kamar</option>
                                     @foreach ($kamar as $item)
                                         <option value="{{ $item->id }}">{{ $item->nomor_kamar }}</option>
                                     @endforeach

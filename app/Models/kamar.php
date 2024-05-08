@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class kamar extends Model
 {
     use HasFactory;
-    protected $fillable = ['nomor_kamar', 'luas_kamar', 'harga_sewa', 'fasilitas', 'status'];
+    protected $fillable = ['nomor_kamar', 'luas_kamar', 'harga_Sewa', 'fasilitas', 'status'];
+    protected $table = 'kamars';
 }

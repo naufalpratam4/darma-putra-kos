@@ -9,6 +9,15 @@ use Illuminate\Support\Carbon;
 
 class PenghuniController extends Controller
 {
+    public function viewPenghuni(Request $request)
+    {
+        $penghuni = penghuni::all();
+
+        if ($request->is('api/*') || $request->wantsJson()) {
+            return response()->json(['data' => $penghuni]);
+        }
+        return view('/admin.penghuni', compact('penghuni'));
+    }
     public function penghuni()
     {
         $kamar = kamar::all();
@@ -31,7 +40,7 @@ class PenghuniController extends Controller
             'no_hp' => $request->input('no_hp'),
             'tgl_masuk' => $tgl_masuk,
             'tgl_keluar' => $tgl_keluar,
-            'kamar' => $request->input('kamar'),
+            'kamar_id' => $request->input('kamar_id'),
             'pembayaran' => $request->input('pembayaran'),
         ]);
 
@@ -42,9 +51,15 @@ class PenghuniController extends Controller
     }
     public function viewEditPenghuni($id)
     {
-        $penghuni = penghuni::find($id);
-        $kamar = kamar::all();
+        $penghuni = Penghuni::with('kamar')->find($id); // Pastikan 'Penghuni' dan 'kamar' menggunakan nama model yang benar
+        $kamar = Kamar::all(); // Pastikan 'Kamar' menggunakan nama model yang benar
         return view('admin.editPenghuni', compact('penghuni', 'kamar'));
+    }
+    public function detailPenghuni($id)
+    {
+        $penghuni = Penghuni::with('kamar')->find($id); // Pastikan 'Penghuni' dan 'kamar' menggunakan nama model yang benar
+
+        return view('admin.detailPenghuni', compact('penghuni'));
     }
     public function editPenghuni(Request $request, $id)
     {
@@ -62,6 +77,9 @@ class PenghuniController extends Controller
             'pembayaran' => $request->input('pembayaran'),
 
         ]);
+
+        $kamar = kamar::find($penghuni->kamar_id);
+
         return redirect('/penghuni');
     }
 

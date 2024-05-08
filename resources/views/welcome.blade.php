@@ -24,6 +24,7 @@
         </div>
     </div>
     @include('user.jumboTron')
+    @include('user.fasiLita')
     @include('user.contAct')
     @include('user.fooTer')
 @endsection

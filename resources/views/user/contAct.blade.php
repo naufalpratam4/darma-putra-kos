@@ -1,4 +1,4 @@
-<div class="container mx-auto grid md:grid-cols-2" id="contact">
+<div class="container mx-auto grid md:grid-cols-2 mt-5" id="contact">
     <form action="{{ route('tulisPesan') }}" method="POST">
         @csrf
 

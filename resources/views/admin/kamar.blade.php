@@ -57,6 +57,12 @@
 
                                         </div>
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <div class="flex items-center">
+                                            Aksi
+
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,14 +85,23 @@
                                             {{ $item->fasilitas }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <span
-                                                class="bg-green-100 text-green-800 text-xs font-medium   px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $item->status }}</span>
+                                            @if ($item->status == 'Tersedia')
+                                                <span
+                                                    class="bg-green-100 text-green-800 text-xs font-medium   px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ $item->status }}</span>
+                                            @elseif ($item->status == 'Renovasi')
+                                                <span
+                                                    class="bg-red-100 red-red-800 text-xs font-medium   px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{{ $item->status }}</span>
+                                            @else
+                                                <span
+                                                    class="bg-blue-100 red-blue-800 text-xs font-medium   px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $item->status }}</span>
+                                            @endif
                                         </td>
 
 
                                         <td class=" py-4 text-right">
                                             <div class="flex">
-                                                <a href="#" class=""><button type="button"
+                                                <a href="{{ route('edit.kamar', $item->id) }}" class=""><button
+                                                        type="button"
                                                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button></a>
                                                 <a href="">
                                                     <button type="button"

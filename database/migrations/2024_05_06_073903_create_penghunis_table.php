@@ -20,10 +20,11 @@ return new class extends Migration
             $table->date('tgl_masuk');
             $table->date('tgl_keluar');
             $table->string('pembayaran');
-            $table->unsignedBigInteger('kamar')->nullable();
+            $table->string('jatuh_tempo');
+            $table->unsignedBigInteger('kamar_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('kamar')->references('id')->on('kamars')->onDelete('SET NULL');
+            $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('SET NULL');
         });
     }
 

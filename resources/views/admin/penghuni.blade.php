@@ -22,91 +22,50 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
 
+
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        No
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Nama Lengkap <a href=""><i class="fa-solid fa-sort ps-1"></i></a>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Email
-                                            <a href="#">
-                                                <i class="fa-solid fa-sort  ps-1"></i>
-                                            </a>
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Alamat
-
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            No Hp
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Tgl Masuk
-                                            <a href="">
-                                                <i class="fa-solid fa-sort ps-1"></i>
-                                            </a>
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Tgl Keluar
-                                            <a href="">
-                                                <i class="fa-solid fa-sort ps-1"></i>
-                                            </a>
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Kamar
-                                            <a href="">
-                                                <i class="fa-solid fa-sort ps-1"></i>
-                                            </a>
-
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Pembayaran
-
-                                        </div>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Aksi
-
-                                        </div>
+                                        Nama Lengkap
                                     </th>
 
+                                    <th scope="col" class="px-6 py-3">
+                                        Alamat
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        No Hp
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Tanggal Masuk
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Tanggal Keluar
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
 
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penghuni as $no => $item)
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <th class="px-6 py-4">
-                                            {{ $no + 1 }}
-                                        </th>
+                                @foreach ($penghuni as $item)
+                                    <tr
+                                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $item->nama_lengkap }}
+                                            <a
+                                                href="{{ route('detail.penghuni', $item->id) }}">{{ $item->nama_lengkap }}</a>
                                         </th>
-                                        <td class="px-6 py-4">
-                                            {{ $item->email }}
-                                        </td>
-                                        <td class="px-6 py-4">
+
+
+
+                                        <td class="px-6 py-4 whitespace-nowrap">
                                             {{ $item->alamat }}
                                         </td>
                                         <td class="px-6 py-4">
@@ -118,37 +77,47 @@
                                         <td class="px-6 py-4">
                                             {{ $item->tgl_keluar }}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            {{ $item->kamar }}
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            @if ($item->tgl_masuk == $item->tgl_keluar)
+                                                <span
+                                                    class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Jatuh
+                                                    Tempo
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Belum
+                                                    Jatuh Tempo</span>
+                                            @endif
                                         </td>
-                                        <td class="px-6 py-4">
-                                            {{ $item->pembayaran }}
-                                        </td>
-
                                         <td class=" py-4 text-right">
                                             <div class="flex">
-                                                <a href="{{ route('edit.penghuni', $item->id) }}"
-                                                    class=""><button type="button"
+                                                <a href="{{ route('edit.penghuni', $item->id) }}" class=""><button
+                                                        type="button"
                                                         class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button></a>
 
-                                                <button type="button" data-modal-target="static-modal"
-                                                    data-modal-toggle="static-modal"
-                                                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
-                                                </button>
+                                                <form action="{{ route('delete.penghuni', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus penghuni {{ $item->nama_lengkap }}?')"
+                                                        data-modal-target="static-modal"
+                                                        data-modal-toggle="static-modal"
+                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
+                                                    </button>
+                                                </form>
+
 
                                             </div>
 
                                         </td>
-
-
                                     </tr>
                                 @endforeach
-
 
 
                             </tbody>
                         </table>
                     </div>
+
 
                 </div>
             </div>

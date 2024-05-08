@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Edit Penghuni') }}
+            {{ __('Detail Penghuni') }}
         </h2>
     </x-slot>
 
@@ -27,14 +27,15 @@
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Lengkap</label>
-                                <input type="text" id="base-input" name="nama_lengkap"
+                                <input type="text" readonly id="base-input" name="nama_lengkap"
                                     value="{{ $penghuni->nama_lengkap }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="text" id="base-input" name="email" value="{{ $penghuni->email }}"
+                                <input type="text" readonly id="base-input" name="email"
+                                    value="{{ $penghuni->email }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                         </div>
@@ -42,14 +43,16 @@
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                                <input type="text" id="base-input" name="alamat" value="{{ $penghuni->alamat }}"
+                                <input type="text" readonly id="base-input" name="alamat"
+                                    value="{{ $penghuni->alamat }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
                                     HP</label>
-                                <input type="number" id="base-input" name="no_hp" value="{{ $penghuni->no_hp }}"
+                                <input type="number" readonly id="base-input" name="no_hp"
+                                    value="{{ $penghuni->no_hp }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                         </div>
@@ -64,7 +67,8 @@
                                         class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                         <i class="fa-solid fa-calendar-days"></i>
                                     </div>
-                                    <input datepicker type="text" name="tgl_masuk" value="{{ $penghuni->tgl_masuk }}"
+                                    <input datepicker type="text" readonly name="tgl_masuk"
+                                        value="{{ $penghuni->tgl_masuk }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Select date">
                                 </div>
@@ -79,7 +83,7 @@
                                         class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                         <i class="fa-solid fa-calendar-days"></i>
                                     </div>
-                                    <input datepicker type="text" name="tgl_keluar"
+                                    <input datepicker type="text" readonly name="tgl_keluar"
                                         value="{{ $penghuni->tgl_keluar }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Select date">
@@ -90,15 +94,9 @@
                             <div class="mb-5">
                                 <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kamar</label>
-                                <select id="kamar" name="kamar"
+                                <input type="number" readonly id="base-input" name="no_hp"
+                                    value="{{ $penghuni->kamar->nomor_kamar }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected>{{ $penghuni->kamar->nomor_kamar }}</option>
-                                    @foreach ($kamar as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nomor_kamar }}</option>
-                                    @endforeach
-
-
-                                </select>
                             </div>
                             <div class="mb-5">
                                 <label for="base-input"
