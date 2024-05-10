@@ -29,23 +29,31 @@
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
+                                        No
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Nama Lengkap
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
-                                        Alamat
+                                        Kamar
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        No Hp
-                                    </th>
+
                                     <th scope="col" class="px-6 py-3">
                                         Tanggal Masuk
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Tanggal Keluar
                                     </th>
+
                                     <th scope="col" class="px-6 py-3">
-                                        Status
+                                        Pembayaran
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Bukti Pembayaran
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        status
                                     </th>
                                     <th scope="col" class="px-6 py-3">
 
@@ -53,29 +61,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($penghuni as $item)
+                                @foreach ($penghuni as $no => $item)
                                     <tr
                                         class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            {{ $no + 1 }}
+                                        </td>
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             <a
-                                                href="{{ route('detail.penghuni', $item->id) }}">{{ $item->nama_lengkap }}</a>
+                                                href="{{ route('detail.penghuni', $item->id) }}">{{ $item->calonPenghuni->nama_lengkap }}</a>
+                                            {{-- @dd($item->namaPenghuni) --}}
                                         </th>
 
-
-
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ $item->alamat }}
+                                            {{ $item->kamar->nomor_kamar }}
                                         </td>
-                                        <td class="px-6 py-4">
-                                            {{ $item->no_hp }}
-                                        </td>
+
                                         <td class="px-6 py-4">
                                             {{ $item->tgl_masuk }}
                                         </td>
+
                                         <td class="px-6 py-4">
                                             {{ $item->tgl_keluar }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $item->pembayaran }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $item->bukti_pembayaran }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             @if ($item->tgl_masuk == $item->tgl_keluar)
@@ -93,16 +107,19 @@
                                             <div class="flex">
                                                 <a href="{{ route('edit.penghuni', $item->id) }}" class=""><button
                                                         type="button"
-                                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Edit</button></a>
+                                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"><i
+                                                            class="fa-solid fa-pen"></i></button></a>
 
-                                                <form action="{{ route('delete.penghuni', $item->id) }}" method="POST">
+                                                <form action="{{ route('delete.penghuni', $item->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
                                                         onclick="return confirm('Apakah Anda yakin ingin menghapus penghuni {{ $item->nama_lengkap }}?')"
                                                         data-modal-target="static-modal"
                                                         data-modal-toggle="static-modal"
-                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
+                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i
+                                                            class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
 

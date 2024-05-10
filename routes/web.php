@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\CalonPenghuniController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\JadwalKetemuController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\PenghuniController;
 use App\Http\Controllers\ProfileController;
+use App\Models\calon_penghuni;
+use App\Models\Contact;
 use App\Models\kamar;
 use App\Models\penghuni;
 use Illuminate\Support\Facades\Route;
@@ -11,13 +15,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/jadwal-temu', function () {
+    return view('user.JadwalKetemu');
+});
+Route::post('/jadwal-temu', [JadwalKetemuController::class, 'jadwalKetemu'])->name('jadwalKetemu');
+
+Route::get('/calon-penghuni', function () {
+    $kamar = Kamar::all();
+    return view('user.calonPenghuni', compact('kamar'));
+});
+
+Route::post('/calon-penghuni', [CalonPenghuniController::class, 'calonPenghuni'])->name('calonPenghuni');
+
 Route::get('/detailTawaran', function () {
     return view('user.detailTawaran');
 });
 Route::post('/tulisPesan', [ContactController::class, 'tulisPesan'])->name('tulisPesan');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $penghuni = penghuni::all()->count();
+    $kamar = kamar::all()->count();
+    $pesan = Contact::all()->count();
+    return view('dashboard', compact('penghuni', 'kamar', 'pesan'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/penghuni', [PenghuniController::class, 'viewPenghuni'])->middleware(['auth', 'verified'])->name('penghuni');
@@ -40,6 +59,9 @@ Route::get('/edit-kamar/{id}', [KamarController::class, 'editKamar'])->middlewar
 Route::post('/edit-kamar/{id}', [KamarController::class, 'updateKamar'])->name('update.kamar');
 
 Route::get('/pesan', [ContactController::class, 'dataPesan'])->name('pesan');
+
+Route::get('/isi-calon-penghuni', [CalonPenghuniController::class, 'showCalonPenghuni'])->name('isi-calon-penghuni');
+Route::delete('/delete-calon-penghuni/{id}', [CalonPenghuniController::class, 'deleteCalonPenghuni'])->name('delete.calon.penghuni');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

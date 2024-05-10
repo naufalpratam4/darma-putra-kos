@@ -17,8 +17,10 @@
                         Started</button>
                 </div>
                 <div>
-                    <button
-                        class="px-4 py-2 border-2 border-blue-500  rounded-lg hover:bg-blue-600 hover:text-white duration-100 text-blue-500 font-semibold">Reservasi</button>
+                    <a href="/jadwal-temu"><button
+                            class="px-4 py-2 border-2 border-blue-500  rounded-lg hover:bg-blue-600 hover:text-white duration-100 text-blue-500 font-semibold">Temu
+                            Langsung</button></a>
+
                 </div>
             </div>
         </div>

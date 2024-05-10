@@ -174,7 +174,7 @@
                 </div>
                 <div class="hidden p-4 bg-white rounded-lg dark:bg-gray-800" id="faq" role="tabpanel"
                     aria-labelledby="faq-tab">
-                    <div id="accordion-flush" data-accordion="collapse"
+                    {{-- <div id="accordion-flush" data-accordion="collapse"
                         data-active-classes="bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         data-inactive-classes="text-gray-500 dark:text-gray-400">
                         <h2 id="accordion-flush-heading-1">
@@ -260,7 +260,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

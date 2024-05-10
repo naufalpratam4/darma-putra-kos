@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('penghunis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_lengkap');
-            $table->string('email');
-            $table->string('alamat');
-            $table->string('no_hp');
+            $table->unsignedBigInteger('nama_lengkap');
             $table->date('tgl_masuk');
             $table->date('tgl_keluar');
             $table->string('pembayaran');
-            $table->string('jatuh_tempo');
+            $table->string('bukti_pembayaran');
+
             $table->unsignedBigInteger('kamar_id')->nullable();
             $table->timestamps();
 
+            $table->foreign('nama_lengkap')->references('id')->on('calon_penghunis')->onDelete('cascade');
             $table->foreign('kamar_id')->references('id')->on('kamars')->onDelete('SET NULL');
         });
     }
