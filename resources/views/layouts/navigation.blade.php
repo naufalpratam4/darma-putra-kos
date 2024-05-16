@@ -28,6 +28,9 @@
                     <x-nav-link :href="route('isi-calon-penghuni')" :active="request()->routeIs('isi-calon-penghuni')">
                         {{ __('Calon Penghuni') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('jadwal-temu-admin')" :active="request()->routeIs('jadwal-temu-admin')">
+                        {{ __('Jadwal Temu') }}
+                    </x-nav-link>
                 </div>
             </div>
 

@@ -19,7 +19,7 @@
 
             </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <form action="{{ route('add.penghuni') }}" method="POST">
+                <form action="{{ route('add.penghuni') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <div class="grid md:grid-cols-2 gap-5">

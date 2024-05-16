@@ -8,6 +8,7 @@ use App\Http\Controllers\PenghuniController;
 use App\Http\Controllers\ProfileController;
 use App\Models\calon_penghuni;
 use App\Models\Contact;
+use App\Models\JadwalKetemu;
 use App\Models\kamar;
 use App\Models\penghuni;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,11 @@ Route::get('/jadwal-temu', function () {
     return view('user.JadwalKetemu');
 });
 Route::post('/jadwal-temu', [JadwalKetemuController::class, 'jadwalKetemu'])->name('jadwalKetemu');
+Route::get('jadwal-temu-admin', function () {
+    $penghuni = JadwalKetemu::all();
+    return view('admin.jadwalTemu.jadwalTemu', compact('penghuni'));
+})->name('jadwal-temu-admin',);
+Route::delete('/delete-jadwal-temu/{id}', [JadwalKetemuController::class, 'deleteJadwalKetemu'])->name('delete.jadwal.ketemu');
 
 Route::get('/calon-penghuni', function () {
     $kamar = Kamar::all();

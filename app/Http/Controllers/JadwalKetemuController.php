@@ -18,4 +18,13 @@ class JadwalKetemuController extends Controller
         $data->save();
         return redirect('/jadwal-temu')->with('success', 'Pesan berhasil terkirim');
     }
+    public function deleteJadwalKetemu($id)
+    {
+        $data = JadwalKetemu::find($id);
+        if (!$data) {
+            return response()->json('error');
+        }
+        $data->delete();
+        return redirect('jadwal-temu-admin');
+    }
 }

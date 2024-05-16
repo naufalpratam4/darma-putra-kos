@@ -17,7 +17,7 @@ class PenghuniController extends Controller
         if ($request->is('api/*') || $request->wantsJson()) {
             return response()->json(['data' => $penghuni]);
         }
-        return view('/admin.penghuni', compact('penghuni'));
+        return view('admin.penghuni', compact('penghuni'));
     }
     public function penghuni()
     {
@@ -27,14 +27,6 @@ class PenghuniController extends Controller
     }
     public function addPenghuni(Request $request)
     {
-        $request->validate([
-            // 'tgl_masuk' => 'required|date_format:d/m/Y',
-            // 'tgl_keluar' => 'required|date_format:d/m/Y',
-        ]);
-
-        // $tgl_masuk = Carbon::createFromFormat('d/m/Y', $request->input('tgl_masuk'))->format('Y-m-d');
-        // $tgl_keluar = Carbon::createFromFormat('d/m/Y', $request->input('tgl_keluar'))->format('Y-m-d');
-
         $data = new Penghuni([
             'nama_lengkap' => $request->input('nama_lengkap'),
             'tgl_masuk' => $request->input('tgl_masuk'),
@@ -44,7 +36,11 @@ class PenghuniController extends Controller
             'bukti_pembayaran' => $request->input('bukti_pembayaran')
         ]);
 
-
+        if ($request->hasFile('bukti_pembayaran')) {
+            $request->file('bukti_pembayaran')->move('bukti_pembayaran/', $request->file('bukti_pembayaran')->getClientOriginalName());
+            $data->bukti_pembayaran = $request->file('bukti_pembayaran')->getClientOriginalName();
+            $data->save();
+        };
 
         $data->save();
         return redirect('/penghuni');
@@ -89,5 +85,6 @@ class PenghuniController extends Controller
         if ($data) {
             $data->delete();
         }
+        return redirect('/penghuni');
     }
 }

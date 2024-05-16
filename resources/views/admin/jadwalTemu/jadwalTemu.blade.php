@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('pesan') }}
+            {{ __('jadwal-temu-admin') }}
         </h2>
     </x-slot>
 
@@ -11,12 +11,10 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-end">
 
-
-            </div>
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+
 
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -28,85 +26,81 @@
                                         No
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Nama Lengkap <a href=""><i class="fa-solid fa-sort ps-1"></i></a>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Email
-                                            <a href="#">
-                                                <i class="fa-solid fa-sort  ps-1"></i>
-                                            </a>
-                                        </div>
+                                        Nama Lengkap
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            No Hp
-                                        </div>
-                                    </th>
-
-
-
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Pesan
-
-                                        </div>
+                                        Nomor Hp
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Aksi
-
-                                        </div>
+                                        Keperluan
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Jadwal
                                     </th>
 
+                                    <th scope="col" class="px-6 py-3">
+
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pesan as $no => $item)
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                        <th class="px-6 py-4">
+                                @foreach ($penghuni as $no => $item)
+                                    <tr
+                                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                        <td class="px-6 py-4 whitespace-nowrap">
                                             {{ $no + 1 }}
-                                        </th>
+                                        </td>
                                         <th scope="row"
                                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $item->nama_lengkap }}
+                                            <a
+                                                href="{{ route('detail.penghuni', $item->id) }}">{{ $item->nama_lengkap }}</a>
+                                            {{-- @dd($item->nama_lengkap) --}}
                                         </th>
-                                        <td class="px-6 py-4">
-                                            {{ $item->email }}
-                                        </td>
+
                                         <td class="px-6 py-4">
                                             {{ $item->no_hp }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $item->pesan }}
+                                            {{ $item->keperluan }}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {{ $item->tanggal }}
                                         </td>
 
+                                        <td class=" py-4 text-right">
+                                            <div class="flex">
+                                                <a href="https://api.whatsapp.com/send?phone=6285799857403&text=Halo Naufal%20!"
+                                                    class=""><button type="button"
+                                                        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"><i
+                                                            class="fa-brands fa-whatsapp"></i></button></a>
 
-                                        <td class=" py-4 text-right  flex">
-                                            <div class="mx-auto ">
+                                                <form action="{{ route('delete.jadwal.ketemu', $item->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus Jadwal Ketemu {{ $item->nama_lengkap }}?')"
+                                                        data-modal-target="static-modal"
+                                                        data-modal-toggle="static-modal"
+                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i
+                                                            class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
 
-
-                                                <button type="button" data-modal-target="static-modal"
-                                                    data-modal-toggle="static-modal"
-                                                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"><i
-                                                        class="fa-solid fa-trash"></i>
-                                                </button>
 
                                             </div>
 
                                         </td>
-
-
                                     </tr>
                                 @endforeach
-
 
 
                             </tbody>
                         </table>
                     </div>
+
 
                 </div>
             </div>
